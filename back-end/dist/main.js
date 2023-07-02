@@ -22,11 +22,16 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.app = void 0;
 const express_1 = __importStar(require("express"));
 const task_controller_1 = require("./api/task-controller");
+const cors_1 = __importDefault(require("cors"));
 exports.app = (0, express_1.default)();
+exports.app.use((0, cors_1.default)());
 exports.app.use((0, express_1.json)());
 exports.app.use("/app/api/v1/task", task_controller_1.router);
 exports.app.listen(8080, () => console.log("Server has been started at 8080"));

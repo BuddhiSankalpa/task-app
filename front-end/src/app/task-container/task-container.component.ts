@@ -12,7 +12,7 @@ export class TaskContainerComponent {
   taskList: Array<Task> = [];
 
   constructor(private http: HttpClient) {
-    http.get<Array<Task>>("http://localhost:8080/app/v1/tasks")
+    http.get<Array<Task>>("http://localhost:8080/app/api/v1/task")
       .subscribe(taskList=> this.taskList=taskList);
   }
 
@@ -21,7 +21,7 @@ export class TaskContainerComponent {
       txt.select();
       return;
     }
-    this.http.post<Task>("http://localhost:8080/app/v1/tasks",new Task(0,txt.value,'NOT_COMPLETED')).subscribe(task=>{
+    this.http.post<Task>("http://localhost:8080/app/api/v1/task",new Task(0,txt.value,'NOT_COMPLETED')).subscribe(task=>{
         this.taskList.push(task);
         txt.value='';
         txt.focus();
